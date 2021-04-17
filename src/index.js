@@ -1,6 +1,6 @@
 /* ДЗ 3 - работа с исключениями и отладчиком */
 
-import { arguments } from "file-loader";
+// import { arguments, arguments, arguments } from "file-loader";
 
 /*
  Задание 1:
@@ -127,7 +127,42 @@ function returnBadArguments(fn) {
    - number не является числом (с текстом "number is not a number")
    - какой-либо из аргументов div является нулем (с текстом "division by 0")
  */
-function calculator() {}
+function calculator(num = 0) {
+  if (typeof num !== "number") {
+    throw new Error("number is not a number");
+  }
+
+  return {
+    sum: function () {
+      for (let i = 0; i < arguments.length; i++) {
+        num += arguments[i];
+      }
+      return num;
+    },
+    dif: function () {
+      for (let i = 0; i < arguments.length; i++) {
+        num -= arguments[i];
+      }
+      return num;
+    },
+    div: function () {
+      for (let i = 0; i < arguments.length; i++) {
+        if (arguments[i] === 0) {
+          throw new Error("division by 0");
+        }
+        num /= arguments[i];
+      }
+      return num;
+    },
+    mul: function () {
+      for (let i = 0; i < arguments.length; i++) {
+        num *= arguments[i];
+      }
+
+      return num;
+    },
+  };
+}
 
 /* При решении задач, пострайтесь использовать отладчик */
 
